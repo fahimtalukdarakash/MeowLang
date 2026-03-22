@@ -1,0 +1,13 @@
+# Visual Studio private folder — never commit this
+.vs/
+
+# Build output — generated files, not source code
+bin/
+obj/
+
+# Local secrets — never commit passwords to GitHub
+appsettings.Development.json
+
+# OS files
+.DS_Store
+Thumbs.db
