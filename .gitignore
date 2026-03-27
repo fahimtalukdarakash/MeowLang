@@ -7,6 +7,7 @@ obj/
 
 # Local secrets — never commit passwords to GitHub
 appsettings.Development.json
+appsettings.json
 
 # OS files
 .DS_Store
