@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 builder.Services.AddScoped<ILevelRepository, LevelRepository>();
 builder.Services.AddScoped<ISubLevelRepository, SubLevelRepository>();
+builder.Services.AddScoped<IContentItemRepository, ContentItemRepository>();
 
 var app = builder.Build();
 
