@@ -3,12 +3,13 @@ using MeowLang.Core.Entities;
 using MeowLang.Core.Interfaces;
 using MeowLang.API.DTOs.Requests;
 using MeowLang.API.DTOs.Responses;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace MeowLang.API.Controllers
 {
     [ApiController]
     [Route("api/languages/{languageId}/levels")]
+    [Authorize(Roles = "admin")]
     public class LevelsController : ControllerBase
     {
         private readonly ILevelRepository _levelRepository;

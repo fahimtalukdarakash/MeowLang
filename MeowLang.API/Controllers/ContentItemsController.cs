@@ -3,11 +3,13 @@ using MeowLang.Core.Entities;
 using MeowLang.Core.Interfaces;
 using MeowLang.API.DTOs.Requests;
 using MeowLang.API.DTOs.Responses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MeowLang.API.Controllers
 {
     [ApiController]
     [Route("api/languages/{languageId}/levels/{levelId}/sublevels/{subLevelId}/contentitems")]
+    [Authorize(Roles = "admin")]
     public class ContentItemsController : ControllerBase
     {
         private readonly IContentItemRepository _contentItemRepository;
