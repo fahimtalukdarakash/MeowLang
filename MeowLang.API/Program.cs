@@ -23,9 +23,11 @@ builder.Services.AddScoped<ISubLevelRepository, SubLevelRepository>();
 builder.Services.AddScoped<IContentItemRepository, ContentItemRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IDailyLifeRepository, DailyLifeRepository>();
+builder.Services.AddScoped<ITestCompletionRepository, TestCompletionRepository>();
 
 // Services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITestService, TestService>();
 
 // JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
