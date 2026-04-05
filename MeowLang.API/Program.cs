@@ -22,6 +22,7 @@ builder.Services.AddScoped<ILevelRepository, LevelRepository>();
 builder.Services.AddScoped<ISubLevelRepository, SubLevelRepository>();
 builder.Services.AddScoped<IContentItemRepository, ContentItemRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IDailyLifeRepository, DailyLifeRepository>();
 
 // Services
 builder.Services.AddScoped<IAuthService, AuthService>();
