@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+/* ── Dark Theme — Login page ─────────────────────────────── */
+:root {
+  --color-bg-primary:       #000000;
+  --color-bg-secondary:     #080808;
+  --color-bg-elevated:      #0F0F0F;
+  --color-bg-hover:         #141414;
+
+  --color-accent:           #E8A020;
+  --color-accent-dim:       #E8A02022;
+  --color-accent-hover:     #F0B030;
+
+  --color-text-primary:     #F0EEE8;
+  --color-text-secondary:   #9997A0;
+  --color-text-tertiary:    #55535C;
+
+  --color-border:           #1A1A1A;
+  --color-border-hover:     #2A2A2A;
+
+  --color-success:          #3DB87A;
+  --color-danger:           #E05252;
+  --color-warning:          #E8A020;
+  --color-info:             #5B8AF0;
+
+  --font-display:           'Syne', sans-serif;
+  --font-body:              'DM Sans', sans-serif;
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+
+  --shadow-sm:     0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:     0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg:     0 8px 32px rgba(0,0,0,0.12);
+  --shadow-accent: 0 0 24px rgba(232,160,32,0.15);
+}
+
+/* ── Light Theme — CMS pages after login ─────────────────── */
+[data-theme="light"] {
+  --color-bg-primary:       #FFFFFF;
+  --color-bg-secondary:     #F7F6F3;
+  --color-bg-elevated:      #EFEFED;
+  --color-bg-hover:         #EAEAE8;
+
+  --color-accent:           #D4900A;
+  --color-accent-dim:       #D4900A18;
+  --color-accent-hover:     #C07800;
+
+  --color-text-primary:     #1A1917;
+  --color-text-secondary:   #6B6965;
+  --color-text-tertiary:    #A8A7A3;
+
+  --color-border:           #E8E7E3;
+  --color-border-hover:     #D4D3CF;
+
+  --color-success:          #2A9E5E;
+  --color-danger:           #C94444;
+  --color-warning:          #D4900A;
+  --color-info:             #3B6FD4;
+
+  --shadow-sm:     0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:     0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:     0 8px 32px rgba(0,0,0,0.10);
+  --shadow-accent: 0 0 24px rgba(212,144,10,0.12);
+}

@@ -1,0 +1,216 @@
+/* File: src/pages/Login/LoginPage.module.css */
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    background: var(--color-bg-primary);
+}
+
+/* ── Left Branding Side ─────────────────────────────────── */
+.branding {
+    flex: 1;
+    background: var(--color-bg-primary);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative background pattern */
+.branding::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--color-accent-dim) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.brandContent {
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-7);
+}
+
+.logoIcon {
+    font-size: 32px;
+}
+
+.logoText {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-7);
+}
+
+.stats {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.statNumber {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-accent);
+}
+
+.statLabel {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ── Right Form Side ────────────────────────────────────── */
+.formSide {
+    width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8) var(--space-7);
+}
+
+.formContainer {
+    width: 100%;
+    max-width: 360px;
+}
+
+.formHeader {
+    margin-bottom: var(--space-7);
+}
+
+.formTitle {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.5px;
+}
+
+.formSubtitle {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+}
+
+/* ── Form Elements ──────────────────────────────────────── */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.3px;
+}
+
+.input {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 14px var(--space-4);
+    font-size: 15px;
+    color: var(--color-text-primary);
+    transition: border-color var(--transition-fast),
+                box-shadow var(--transition-fast);
+    outline: none;
+    width: 100%;
+}
+
+.input::placeholder {
+    color: var(--color-text-tertiary);
+}
+
+.input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-dim);
+}
+
+/* ── Error ──────────────────────────────────────────────── */
+.error {
+    background: rgba(224, 82, 82, 0.1);
+    border: 1px solid rgba(224, 82, 82, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: 14px;
+    color: var(--color-danger);
+}
+
+/* ── Submit Button ──────────────────────────────────────── */
+.submitButton {
+    background: var(--color-accent);
+    color: #0D0D0F;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 15px var(--space-5);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: background var(--transition-fast),
+                transform var(--transition-fast),
+                box-shadow var(--transition-fast);
+    width: 100%;
+    margin-top: var(--space-2);
+}
+
+.submitButton:hover:not(:disabled) {
+    background: var(--color-accent-hover);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-1px);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

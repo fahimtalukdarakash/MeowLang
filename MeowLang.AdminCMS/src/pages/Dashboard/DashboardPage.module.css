@@ -1,0 +1,5 @@
+/* File: src/pages/Dashboard/DashboardPage.module.css */
+
+.content {
+    padding: var(--space-7);
+}

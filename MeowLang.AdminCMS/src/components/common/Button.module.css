@@ -1,0 +1,59 @@
+/* File: src/components/common/Button.module.css */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+/* ── Variants ───────────────────────────────────────────── */
+.primary {
+    background: var(--color-accent);
+    color: #FFFFFF;
+    border-color: var(--color-accent);
+}
+
+.primary:hover:not(:disabled) {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+}
+
+.secondary {
+    background: transparent;
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.secondary:hover:not(:disabled) {
+    background: var(--color-bg-elevated);
+    border-color: var(--color-border-hover);
+}
+
+.danger {
+    background: transparent;
+    color: var(--color-danger);
+    border-color: var(--color-border);
+}
+
+.danger:hover:not(:disabled) {
+    background: rgba(201, 68, 68, 0.08);
+    border-color: var(--color-danger);
+}

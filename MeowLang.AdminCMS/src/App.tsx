@@ -1,0 +1,56 @@
+// File: src/App.tsx
+
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAuthStore } from "./store/authStore";
+import LoginPage from "./pages/Login/LoginPage";
+import DashboardPage from "./pages/Dashboard/DashboardPage";
+import FluidCursor from "./components/common/FluidCursor";
+import LanguagesPage from "./pages/Languages/LanguagesPage";
+
+type ProtectedRouteProps = {
+  children: React.ReactNode;
+};
+
+function ProtectedRoute({ children }: ProtectedRouteProps) {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (!isAuthenticated || user?.role !== "admin") {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <>{children}</>;
+}
+
+function App() {
+  const { isAuthenticated } = useAuthStore();
+
+  return (
+    <BrowserRouter>
+      {/* Only show fluid cursor on login page — not in CMS */}
+      {!isAuthenticated && <FluidCursor />}
+
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/languages"
+          element={
+            <ProtectedRoute>
+              <LanguagesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
