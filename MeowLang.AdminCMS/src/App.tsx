@@ -6,6 +6,7 @@ import LoginPage from "./pages/Login/LoginPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import FluidCursor from "./components/common/FluidCursor";
 import LanguagesPage from "./pages/Languages/LanguagesPage";
+import LevelsPage from "./pages/Levels/LevelsPage";
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
@@ -44,6 +45,14 @@ function App() {
           element={
             <ProtectedRoute>
               <LanguagesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/languages/:languageId/levels"
+          element={
+            <ProtectedRoute>
+              <LevelsPage />
             </ProtectedRoute>
           }
         />
