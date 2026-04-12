@@ -84,6 +84,34 @@ namespace MeowLang.API.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, response);
         }
+        // PUT api/languages/1
+        [HttpPut("{id}")]
+        public async Task<ActionResult<LanguageResponse>> Update(int id, UpdateLanguageRequest request)
+        {
+            var language = await _languageRepository.GetByIdAsync(id);
+            if (language == null)
+            {
+                return NotFound($"Language with Id {id} was not found.");
+            }
+
+            // Update only the fields that are allowed to change
+            language.Name = request.Name;
+            language.FlagUrl = request.FlagUrl;
+            language.IsActive = request.IsActive;
+
+            var updated = await _languageRepository.UpdateAsync(language);
+
+            var response = new LanguageResponse
+            {
+                Id = updated.Id,
+                Code = updated.Code,
+                Name = updated.Name,
+                FlagUrl = updated.FlagUrl,
+                IsActive = updated.IsActive
+            };
+
+            return Ok(response);
+        }
 
         // DELETE api/languages/1
         [HttpDelete("{id}")]

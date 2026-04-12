@@ -133,6 +133,47 @@ namespace MeowLang.API.Controllers
                 response);
         }
 
+        // PUT api/languages/1/levels/1/sublevels/1/contentitems/1
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ContentItemResponse>> Update(
+            int languageId, int levelId, int subLevelId,
+            int id, UpdateContentItemRequest request)
+        {
+            var subLevel = await _subLevelRepository.GetByIdAsync(subLevelId);
+            if (subLevel == null)
+            {
+                return NotFound($"SubLevel with Id {subLevelId} was not found.");
+            }
+
+            var contentItem = await _contentItemRepository.GetByIdAsync(id);
+            if (contentItem == null)
+            {
+                return NotFound($"ContentItem with Id {id} was not found.");
+            }
+
+            contentItem.TargetText = request.TargetText;
+            contentItem.NativeText = request.NativeText;
+            contentItem.ExampleWordsJson = request.ExampleWordsJson;
+            contentItem.PartNumber = request.PartNumber;
+            contentItem.SortOrder = request.SortOrder;
+
+            var updated = await _contentItemRepository.UpdateAsync(contentItem);
+
+            var response = new ContentItemResponse
+            {
+                Id = updated.Id,
+                TargetText = updated.TargetText,
+                NativeText = updated.NativeText,
+                ExampleWordsJson = updated.ExampleWordsJson,
+                AudioUrl = updated.AudioUrl,
+                ImageUrl = updated.ImageUrl,
+                PartNumber = updated.PartNumber,
+                SortOrder = updated.SortOrder,
+                SubLevelId = updated.SubLevelId
+            };
+
+            return Ok(response);
+        }
         // DELETE api/languages/1/levels/1/sublevels/1/contentitems/1
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(

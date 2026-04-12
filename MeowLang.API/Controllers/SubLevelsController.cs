@@ -141,6 +141,48 @@ namespace MeowLang.API.Controllers
 
             return CreatedAtAction(nameof(GetById), new { languageId, levelId, id = created.Id }, response);
         }
+
+        // PUT api/languages/1/levels/1/sublevels/1
+        [HttpPut("{id}")]
+        public async Task<ActionResult<SubLevelResponse>> Update(
+            int languageId, int levelId, int id, UpdateSubLevelRequest request)
+        {
+            var level = await _levelRepository.GetByIdAsync(levelId);
+            if (level == null)
+            {
+                return NotFound($"Level with Id {levelId} was not found.");
+            }
+
+            var subLevel = await _subLevelRepository.GetByIdAsync(id);
+            if (subLevel == null)
+            {
+                return NotFound($"SubLevel with Id {id} was not found.");
+            }
+
+            subLevel.Title = request.Title;
+            subLevel.Description = request.Description;
+            subLevel.SortOrder = request.SortOrder;
+            subLevel.TotalParts = request.TotalParts;
+            subLevel.ItemsPerPart = request.ItemsPerPart;
+
+            var updated = await _subLevelRepository.UpdateAsync(subLevel);
+
+            var response = new SubLevelResponse
+            {
+                Id = updated.Id,
+                Title = updated.Title,
+                Description = updated.Description,
+                SortOrder = updated.SortOrder,
+                DisplayType = updated.DisplayType,
+                TotalParts = updated.TotalParts,
+                ItemsPerPart = updated.ItemsPerPart,
+                LevelId = updated.LevelId,
+                ContentItemCount = updated.ContentItems.Count
+            };
+
+            return Ok(response);
+        }
+
         // DELETE api/languages/1/levels/1/sublevels/1
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int languageId, int levelId, int id)

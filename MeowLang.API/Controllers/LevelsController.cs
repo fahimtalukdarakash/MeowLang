@@ -111,6 +111,41 @@ namespace MeowLang.API.Controllers
             return CreatedAtAction(nameof(GetById), new { languageId, id = created.Id }, response);
         }
 
+        // PUT api/languages/1/levels/1
+        [HttpPut("{id}")]
+        public async Task<ActionResult<LevelResponse>> Update(
+            int languageId, int id, UpdateLevelRequest request)
+        {
+            var language = await _languageRepository.GetByIdAsync(languageId);
+            if (language == null)
+            {
+                return NotFound($"Language with Id {languageId} was not found.");
+            }
+
+            var level = await _levelRepository.GetByIdAsync(id);
+            if (level == null)
+            {
+                return NotFound($"Level with Id {id} was not found.");
+            }
+
+            level.DisplayName = request.DisplayName;
+            level.SortOrder = request.SortOrder;
+
+            var updated = await _levelRepository.UpdateAsync(level);
+
+            var response = new LevelResponse
+            {
+                Id = updated.Id,
+                Code = updated.Code,
+                DisplayName = updated.DisplayName,
+                SortOrder = updated.SortOrder,
+                LanguageId = updated.LanguageId,
+                SubLevelCount = updated.SubLevels.Count
+            };
+
+            return Ok(response);
+        }
+
         // DELETE api/languages/1/levels/1
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int languageId, int id)
