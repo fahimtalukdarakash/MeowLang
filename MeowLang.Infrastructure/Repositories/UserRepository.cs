@@ -44,5 +44,11 @@ namespace MeowLang.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return user;
         }
+        public async Task<IEnumerable<User>> GetAllAsync()
+        {
+            return await _context.Users
+                .OrderByDescending(u => u.CreatedAt)
+                .ToListAsync();
+        }
     }
 }

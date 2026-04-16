@@ -9,6 +9,7 @@ import LanguagesPage from "./pages/Languages/LanguagesPage";
 import LevelsPage from "./pages/Levels/LevelsPage";
 import SubLevelsPage from "./pages/SubLevels/SubLevelsPage";
 import ContentPage from "./pages/Content/ContentPage";
+import UsersPage from "./pages/Users/UsersPage";
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
@@ -71,6 +72,14 @@ function App() {
           element={
             <ProtectedRoute>
               <ContentPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute>
+              <UsersPage />
             </ProtectedRoute>
           }
         />

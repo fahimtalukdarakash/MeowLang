@@ -1,0 +1,190 @@
+/* File: src/pages/Users/UsersPage.module.css */
+
+.content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* ── Error ──────────────────────────────────────────────── */
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background: rgba(201, 68, 68, 0.08);
+    border: 1px solid rgba(201, 68, 68, 0.2);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: var(--color-danger);
+}
+
+.errorClose {
+    background: none;
+    border: none;
+    color: var(--color-danger);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* ── Table ──────────────────────────────────────────────── */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.th {
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-secondary);
+}
+
+.tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-fast);
+}
+
+.tr:last-child {
+    border-bottom: none;
+}
+
+.tr:hover {
+    background: var(--color-bg-secondary);
+}
+
+.td {
+    padding: var(--space-4);
+    font-size: 14px;
+    color: var(--color-text-primary);
+    vertical-align: middle;
+}
+
+/* ── User cell ──────────────────────────────────────────── */
+.userCell {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-accent-dim);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-display);
+    flex-shrink: 0;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.userName {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.userHandle {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+}
+
+.email {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+}
+
+/* ── Badges ─────────────────────────────────────────────── */
+.roleAdmin {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(212, 144, 10, 0.12);
+    color: var(--color-warning);
+}
+
+.roleUser {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--color-bg-elevated);
+    color: var(--color-text-secondary);
+}
+
+.planPremium {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(42, 158, 94, 0.12);
+    color: var(--color-success);
+}
+
+.planFree {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--color-bg-elevated);
+    color: var(--color-text-tertiary);
+}
+
+/* ── Streak ─────────────────────────────────────────────── */
+.streak {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.streakIcon {
+    font-size: 14px;
+}
+
+.streakDays {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+/* ── Date ───────────────────────────────────────────────── */
+.date {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+}
+
+/* ── States ─────────────────────────────────────────────── */
+.loading {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    padding: var(--space-7);
+    text-align: center;
+}
+
+.empty {
+    text-align: center;
+    padding: var(--space-8);
+    color: var(--color-text-secondary);
+    font-size: 14px;
+}
