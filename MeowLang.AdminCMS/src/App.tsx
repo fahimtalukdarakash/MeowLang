@@ -9,6 +9,7 @@ import LanguagesPage from "./pages/Languages/LanguagesPage";
 import LevelsPage from "./pages/Levels/LevelsPage";
 import SubLevelsPage from "./pages/SubLevels/SubLevelsPage";
 import ContentPage from "./pages/Content/ContentPage";
+import ContentTreePage from "./pages/Content/ContentTreePage";
 import UsersPage from "./pages/Users/UsersPage";
 
 type ProtectedRouteProps = {
@@ -80,6 +81,14 @@ function App() {
           element={
             <ProtectedRoute>
               <UsersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/content"
+          element={
+            <ProtectedRoute>
+              <ContentTreePage />
             </ProtectedRoute>
           }
         />

@@ -1,0 +1,251 @@
+/* File: src/pages/Content/ContentTreePage.module.css */
+
+.content {
+    padding: var(--space-6);
+}
+
+.tree {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* ── Language node ──────────────────────────────────────── */
+.languageNode {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.languageRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    border-bottom: 1px solid transparent;
+}
+
+.languageRow:hover {
+    background: var(--color-bg-secondary);
+}
+
+.rowLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.arrow {
+    font-size: 10px;
+    color: var(--color-text-tertiary);
+    width: 12px;
+}
+
+.langIcon {
+    font-size: 18px;
+}
+
+.languageName {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+}
+
+.langCode {
+    font-size: 12px;
+    padding: 2px 8px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-accent);
+    font-weight: 500;
+}
+
+.statusActive {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(42, 158, 94, 0.1);
+    color: var(--color-success);
+}
+
+.statusInactive {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: var(--color-bg-elevated);
+    color: var(--color-text-tertiary);
+}
+
+.manageBtn {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.manageBtn:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* ── Levels list ────────────────────────────────────────── */
+.levelsList {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-secondary);
+}
+
+.levelNode {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.levelNode:last-child {
+    border-bottom: none;
+}
+
+.levelRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-5);
+    padding-left: calc(var(--space-5) + 24px);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.levelRow:hover {
+    background: var(--color-bg-elevated);
+}
+
+.levelIcon {
+    font-size: 16px;
+}
+
+.levelName {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.countBadge {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    padding: 2px 8px;
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+}
+
+/* ── SubLevels list ─────────────────────────────────────── */
+.subLevelsList {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-primary);
+}
+
+.subLevelRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-5);
+    padding-left: calc(var(--space-5) + 48px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-fast);
+}
+
+.subLevelRow:last-child {
+    border-bottom: none;
+}
+
+.subLevelRow:hover {
+    background: var(--color-bg-secondary);
+}
+
+.subLevelIcon {
+    font-size: 14px;
+}
+
+.subLevelName {
+    font-size: 14px;
+    color: var(--color-text-primary);
+}
+
+/* ── Type badges ────────────────────────────────────────── */
+.typeBadge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.alphabet {
+    background: rgba(91, 138, 240, 0.12);
+    color: var(--color-info);
+}
+
+.number {
+    background: rgba(212, 144, 10, 0.12);
+    color: var(--color-warning);
+}
+
+.standard {
+    background: rgba(42, 158, 94, 0.12);
+    color: var(--color-success);
+}
+
+.uploadBtn {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.uploadBtn:hover {
+    color: var(--color-success);
+    border-color: var(--color-success);
+}
+
+/* ── Tree states ────────────────────────────────────────── */
+.treeLoading {
+    padding: var(--space-3) var(--space-5);
+    padding-left: calc(var(--space-5) + 24px);
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+}
+
+.treeEmpty {
+    padding: var(--space-3) var(--space-5);
+    padding-left: calc(var(--space-5) + 24px);
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+}
+
+/* ── Page states ────────────────────────────────────────── */
+.loading {
+    text-align: center;
+    padding: var(--space-8);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
+
+.empty {
+    text-align: center;
+    padding: var(--space-8);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
