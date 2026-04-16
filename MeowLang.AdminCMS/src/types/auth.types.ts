@@ -21,6 +21,8 @@ export type AuthResponse = {
     token: string
     userId: number
     userName: string
+    firstName: string
+    lastName: string
     email: string
     role: string
     expiresAt: string
@@ -30,6 +32,8 @@ export type AuthResponse = {
 export type AuthUser = {
     userId: number
     userName: string
+    firstName: string
+    lastName: string
     email: string
     role: string
     token: string

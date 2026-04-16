@@ -55,6 +55,8 @@ namespace MeowLang.API.Controllers
                 Token = token,
                 UserId = created.Id,
                 UserName = created.UserName,
+                FirstName = created.FirstName,
+                LastName = created.LastName,
                 Email = created.Email,
                 Role = created.Role,
                 ExpiresAt = DateTime.UtcNow.AddDays(7)
