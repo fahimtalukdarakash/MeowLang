@@ -38,6 +38,15 @@ function SubLevelsPage() {
   const [totalParts, setTotalParts] = useState(1);
   const [itemsPerPart, setItemsPerPart] = useState<number | "">("");
 
+  // Edit state
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editDescription, setEditDescription] = useState("");
+  const [editSortOrder, setEditSortOrder] = useState(0);
+  const [editTotalParts, setEditTotalParts] = useState(1);
+  const [editItemsPerPart, setEditItemsPerPart] = useState<number | "">("");
+  const [isSaving, setIsSaving] = useState(false);
+
   // ── Load data ─────────────────────────────────────────────────
   useEffect(() => {
     if (languageId && levelId) {
@@ -113,6 +122,42 @@ function SubLevelsPage() {
       setSubLevels(subLevels.filter((s) => s.id !== id));
     } catch {
       setError("Failed to delete sublevel.");
+    }
+  };
+  // ── Start editing ─────────────────────────────────────────
+  const handleStartEdit = (subLevel: SubLevel) => {
+    setEditingId(subLevel.id);
+    setEditTitle(subLevel.title);
+    setEditDescription(subLevel.description ?? "");
+    setEditSortOrder(subLevel.sortOrder);
+    setEditTotalParts(subLevel.totalParts);
+    setEditItemsPerPart(subLevel.itemsPerPart ?? "");
+  };
+
+  // ── Save edit ─────────────────────────────────────────────
+  const handleSaveEdit = async (id: number) => {
+    if (!languageId || !levelId) return;
+
+    try {
+      setIsSaving(true);
+      const updated = await subLevelsApi.update(
+        parseInt(languageId),
+        parseInt(levelId),
+        id,
+        {
+          title: editTitle,
+          description: editDescription || undefined,
+          sortOrder: editSortOrder,
+          totalParts: editTotalParts,
+          itemsPerPart: editItemsPerPart === "" ? undefined : editItemsPerPart,
+        },
+      );
+      setSubLevels(subLevels.map((s) => (s.id === id ? updated : s)));
+      setEditingId(null);
+    } catch {
+      setError("Failed to update sublevel.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -257,54 +302,144 @@ function SubLevelsPage() {
               </tr>
             </thead>
             <tbody>
-              {subLevels.map((subLevel) => (
-                <tr key={subLevel.id} className={styles.tr}>
-                  <td className={styles.td}>
-                    <span className={styles.subLevelTitle}>
-                      {subLevel.title}
-                    </span>
-                    {subLevel.description && (
-                      <p className={styles.subLevelDesc}>
-                        {subLevel.description}
-                      </p>
-                    )}
-                  </td>
-                  <td className={styles.td}>
-                    <span
-                      className={`${styles.typeBadge} ${styles[subLevel.displayType]}`}
-                    >
-                      {subLevel.displayType}
-                    </span>
-                  </td>
-                  <td className={styles.td}>{subLevel.totalParts}</td>
-                  <td className={styles.td}>{subLevel.itemsPerPart ?? "—"}</td>
-                  <td className={styles.td}>
-                    <span className={styles.count}>
-                      {subLevel.contentItemCount} items
-                    </span>
-                  </td>
-                  <td className={styles.td}>
-                    <div className={styles.actions}>
-                      <Button
-                        label="Upload"
-                        variant="secondary"
-                        onClick={() =>
-                          navigate(
-                            `/languages/${languageId}/levels/${levelId}/sublevels/${subLevel.id}/content`,
-                          )
-                        }
-                      />
-                      <Button
-                        label="Delete"
-                        variant="danger"
-                        onClick={() =>
-                          handleDelete(subLevel.id, subLevel.title)
-                        }
-                      />
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              {subLevels.map((subLevel) =>
+                editingId === subLevel.id ? (
+                  // ── Edit row ───────────────────────────────
+                  <tr key={subLevel.id} className={styles.tr}>
+                    <td className={styles.td} colSpan={6}>
+                      <div className={styles.editRow}>
+                        <div className={styles.editGrid}>
+                          <div className={styles.field}>
+                            <label className={styles.label}>Title</label>
+                            <input
+                              className={styles.input}
+                              value={editTitle}
+                              onChange={(e) => setEditTitle(e.target.value)}
+                            />
+                          </div>
+                          <div className={styles.field}>
+                            <label className={styles.label}>Description</label>
+                            <input
+                              className={styles.input}
+                              value={editDescription}
+                              onChange={(e) =>
+                                setEditDescription(e.target.value)
+                              }
+                            />
+                          </div>
+                          <div className={styles.field}>
+                            <label className={styles.label}>Sort order</label>
+                            <input
+                              className={styles.input}
+                              type="number"
+                              value={editSortOrder}
+                              onChange={(e) =>
+                                setEditSortOrder(parseInt(e.target.value))
+                              }
+                            />
+                          </div>
+                          <div className={styles.field}>
+                            <label className={styles.label}>Total parts</label>
+                            <input
+                              className={styles.input}
+                              type="number"
+                              value={editTotalParts}
+                              onChange={(e) =>
+                                setEditTotalParts(parseInt(e.target.value))
+                              }
+                            />
+                          </div>
+                          <div className={styles.field}>
+                            <label className={styles.label}>
+                              Items per part
+                            </label>
+                            <input
+                              className={styles.input}
+                              type="number"
+                              placeholder="Empty = show all"
+                              value={editItemsPerPart}
+                              onChange={(e) =>
+                                setEditItemsPerPart(
+                                  e.target.value === ""
+                                    ? ""
+                                    : parseInt(e.target.value),
+                                )
+                              }
+                            />
+                          </div>
+                        </div>
+                        <div className={styles.editActions}>
+                          <Button
+                            label={isSaving ? "Saving..." : "Save"}
+                            onClick={() => handleSaveEdit(subLevel.id)}
+                            disabled={isSaving || !editTitle}
+                          />
+                          <Button
+                            label="Cancel"
+                            variant="secondary"
+                            onClick={() => setEditingId(null)}
+                          />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  // ── View row ───────────────────────────────
+                  <tr key={subLevel.id} className={styles.tr}>
+                    <td className={styles.td}>
+                      <span className={styles.subLevelTitle}>
+                        {subLevel.title}
+                      </span>
+                      {subLevel.description && (
+                        <p className={styles.subLevelDesc}>
+                          {subLevel.description}
+                        </p>
+                      )}
+                    </td>
+                    <td className={styles.td}>
+                      <span
+                        className={`${styles.typeBadge} ${styles[subLevel.displayType]}`}
+                      >
+                        {subLevel.displayType}
+                      </span>
+                    </td>
+                    <td className={styles.td}>{subLevel.totalParts}</td>
+                    <td className={styles.td}>
+                      {subLevel.itemsPerPart ?? "—"}
+                    </td>
+                    <td className={styles.td}>
+                      <span className={styles.count}>
+                        {subLevel.contentItemCount} items
+                      </span>
+                    </td>
+                    <td className={styles.td}>
+                      <div className={styles.actions}>
+                        <Button
+                          label="Edit"
+                          variant="secondary"
+                          onClick={() => handleStartEdit(subLevel)}
+                        />
+                        <Button
+                          label="Upload"
+                          variant="secondary"
+                          onClick={() =>
+                            navigate(
+                              `/languages/${languageId}/levels/${levelId}/sublevels/${subLevel.id}/content`,
+                            )
+                          }
+                        />
+                        <Button
+                          label="Delete"
+                          variant="danger"
+                          onClick={() =>
+                            handleDelete(subLevel.id, subLevel.title)
+                          }
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ),
+              )}
             </tbody>
           </table>
         )}

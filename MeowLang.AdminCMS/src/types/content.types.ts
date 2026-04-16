@@ -14,6 +14,12 @@ export type CreateLanguageRequest = {
     name: string
     flagUrl?: string
 }
+export type UpdateLanguageRequest = {
+    name: string
+    flagUrl?: string
+    isActive: boolean
+}
+
 
 // ── Level ─────────────────────────────────
 export type Level = {
@@ -30,7 +36,10 @@ export type CreateLevelRequest = {
     displayName: string
     sortOrder: number
 }
-
+export type UpdateLevelRequest = {
+    displayName: string
+    sortOrder: number
+}
 // ── SubLevel ──────────────────────────────
 export type SubLevel = {
     id: number
@@ -48,6 +57,13 @@ export type CreateSubLevelRequest = {
     title: string
     description?: string
     displayType: 'alphabet' | 'number' | 'standard'
+    sortOrder: number
+    totalParts: number
+    itemsPerPart?: number
+}
+export type UpdateSubLevelRequest = {
+    title: string
+    description?: string
     sortOrder: number
     totalParts: number
     itemsPerPart?: number

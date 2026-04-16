@@ -24,6 +24,13 @@ function LanguagesPage() {
   const [newName, setNewName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Edit state
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editName, setEditName] = useState("");
+  const [editFlagUrl, setEditFlagUrl] = useState("");
+  const [editIsActive, setEditIsActive] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+
   // ── Load languages on page load ───────────────────────────────
   useEffect(() => {
     loadLanguages();
@@ -78,6 +85,31 @@ function LanguagesPage() {
       setLanguages(languages.filter((l) => l.id !== id));
     } catch {
       setError("Failed to delete language.");
+    }
+  };
+  // ── Start editing ─────────────────────────────────────────
+  const handleStartEdit = (language: Language) => {
+    setEditingId(language.id);
+    setEditName(language.name);
+    setEditFlagUrl(language.flagUrl ?? "");
+    setEditIsActive(language.isActive);
+  };
+
+  // ── Save edit ─────────────────────────────────────────────
+  const handleSaveEdit = async (id: number) => {
+    try {
+      setIsSaving(true);
+      const updated = await languagesApi.update(id, {
+        name: editName,
+        flagUrl: editFlagUrl || undefined,
+        isActive: editIsActive,
+      });
+      setLanguages(languages.map((l) => (l.id === id ? updated : l)));
+      setEditingId(null);
+    } catch {
+      setError("Failed to update language.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -172,40 +204,108 @@ function LanguagesPage() {
               </tr>
             </thead>
             <tbody>
-              {languages.map((language) => (
-                <tr key={language.id} className={styles.tr}>
-                  <td className={styles.td}>
-                    <span className={styles.code}>{language.code}</span>
-                  </td>
-                  <td
-                    className={styles.td}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => navigate(`/languages/${language.id}/levels`)}
-                  >
-                    <span style={{ color: "var(--color-accent)" }}>
-                      {language.name}
-                    </span>
-                  </td>
-                  <td className={styles.td}>
-                    <span
-                      className={
-                        language.isActive
-                          ? styles.statusActive
-                          : styles.statusInactive
+              {languages.map((language) =>
+                editingId === language.id ? (
+                  // ── Edit row ───────────────────────────────
+                  <tr key={language.id} className={styles.tr}>
+                    <td className={styles.td} colSpan={4}>
+                      <div className={styles.editRow}>
+                        <div className={styles.editGrid}>
+                          <div className={styles.field}>
+                            <label className={styles.label}>Name</label>
+                            <input
+                              className={styles.input}
+                              value={editName}
+                              onChange={(e) => setEditName(e.target.value)}
+                            />
+                          </div>
+                          <div className={styles.field}>
+                            <label className={styles.label}>
+                              Flag URL (optional)
+                            </label>
+                            <input
+                              className={styles.input}
+                              value={editFlagUrl}
+                              onChange={(e) => setEditFlagUrl(e.target.value)}
+                              placeholder="https://..."
+                            />
+                          </div>
+                          <div className={styles.field}>
+                            <label className={styles.label}>Status</label>
+                            <select
+                              className={styles.select}
+                              value={editIsActive ? "active" : "inactive"}
+                              onChange={(e) =>
+                                setEditIsActive(e.target.value === "active")
+                              }
+                            >
+                              <option value="active">Active</option>
+                              <option value="inactive">Inactive</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className={styles.editActions}>
+                          <Button
+                            label={isSaving ? "Saving..." : "Save"}
+                            onClick={() => handleSaveEdit(language.id)}
+                            disabled={isSaving || !editName}
+                          />
+                          <Button
+                            label="Cancel"
+                            variant="secondary"
+                            onClick={() => setEditingId(null)}
+                          />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  // ── View row ───────────────────────────────
+                  <tr key={language.id} className={styles.tr}>
+                    <td className={styles.td}>
+                      <span className={styles.code}>{language.code}</span>
+                    </td>
+                    <td
+                      className={styles.td}
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        navigate(`/languages/${language.id}/levels`)
                       }
                     >
-                      {language.isActive ? "Active" : "Inactive"}
-                    </span>
-                  </td>
-                  <td className={styles.td}>
-                    <Button
-                      label="Delete"
-                      variant="danger"
-                      onClick={() => handleDelete(language.id, language.name)}
-                    />
-                  </td>
-                </tr>
-              ))}
+                      <span style={{ color: "var(--color-accent)" }}>
+                        {language.name}
+                      </span>
+                    </td>
+                    <td className={styles.td}>
+                      <span
+                        className={
+                          language.isActive
+                            ? styles.statusActive
+                            : styles.statusInactive
+                        }
+                      >
+                        {language.isActive ? "Active" : "Inactive"}
+                      </span>
+                    </td>
+                    <td className={styles.td}>
+                      <div className={styles.actions}>
+                        <Button
+                          label="Edit"
+                          variant="secondary"
+                          onClick={() => handleStartEdit(language)}
+                        />
+                        <Button
+                          label="Delete"
+                          variant="danger"
+                          onClick={() =>
+                            handleDelete(language.id, language.name)
+                          }
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ),
+              )}
             </tbody>
           </table>
         )}
