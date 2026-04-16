@@ -73,3 +73,11 @@ export type CreateContentItemRequest = {
     partNumber: number
     sortOrder: number
 }
+
+export type UpdateContentItemRequest = {
+    targetText: string
+    nativeText: string
+    exampleWordsJson?: string
+    partNumber: number
+    sortOrder: number
+}

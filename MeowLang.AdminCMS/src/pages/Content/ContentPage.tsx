@@ -41,6 +41,15 @@ function ContentPage() {
   const [isBulkUploading, setIsBulkUploading] = useState(false);
   const [jsonText, setJsonText] = useState("");
 
+  // Edit state
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editTarget, setEditTarget] = useState("");
+  const [editNative, setEditNative] = useState("");
+  const [editPart, setEditPart] = useState(1);
+  const [editSort, setEditSort] = useState(1);
+  const [editExamples, setEditExamples] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
   // ── Load data ─────────────────────────────────────────────────
   useEffect(() => {
     if (languageId && levelId && subLevelId) {
@@ -155,6 +164,44 @@ function ContentPage() {
       setContentItems(contentItems.filter((c) => c.id !== id));
     } catch {
       setError("Failed to delete item.");
+    }
+  };
+  // ── Start editing ─────────────────────────────────────────
+  const handleStartEdit = (item: ContentItem) => {
+    setEditingId(item.id);
+    setEditTarget(item.targetText);
+    setEditNative(item.nativeText);
+    setEditPart(item.partNumber);
+    setEditSort(item.sortOrder);
+    setEditExamples(item.exampleWordsJson ?? "");
+  };
+
+  // ── Save edit ─────────────────────────────────────────────
+  const handleSaveEdit = async (id: number) => {
+    try {
+      setIsSaving(true);
+      const updated = await contentItemsApi.update(
+        parseInt(languageId!),
+        parseInt(levelId!),
+        parseInt(subLevelId!),
+        id,
+        {
+          targetText: editTarget,
+          nativeText: editNative,
+          exampleWordsJson: editExamples || undefined,
+          partNumber: editPart,
+          sortOrder: editSort,
+        },
+      );
+      // Replace the item in the list with the updated version
+      setContentItems(contentItems.map((c) => (c.id === id ? updated : c)));
+      setEditingId(null);
+      setSuccess("Item updated successfully.");
+      setTimeout(() => setSuccess(null), 3000);
+    } catch {
+      setError("Failed to update item.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -325,30 +372,117 @@ function ContentPage() {
                 <div className={styles.itemList}>
                   {contentItems.map((item) => (
                     <div key={item.id} className={styles.item}>
-                      <div className={styles.itemLeft}>
-                        <div className={styles.itemTexts}>
-                          <span className={styles.itemTarget}>
-                            {item.targetText}
-                          </span>
-                          <span className={styles.itemNative}>
-                            {item.nativeText}
-                          </span>
+                      {editingId === item.id ? (
+                        // ── Edit mode ──────────────────────────
+                        <div className={styles.editMode}>
+                          <div className={styles.editRow}>
+                            <div className={styles.field}>
+                              <label className={styles.label}>
+                                Target (German)
+                              </label>
+                              <input
+                                className={styles.input}
+                                value={editTarget}
+                                onChange={(e) => setEditTarget(e.target.value)}
+                              />
+                            </div>
+                            <div className={styles.field}>
+                              <label className={styles.label}>
+                                Native (English)
+                              </label>
+                              <input
+                                className={styles.input}
+                                value={editNative}
+                                onChange={(e) => setEditNative(e.target.value)}
+                              />
+                            </div>
+                          </div>
+                          <div className={styles.editRow}>
+                            <div className={styles.field}>
+                              <label className={styles.label}>Part</label>
+                              <input
+                                className={styles.input}
+                                type="number"
+                                value={editPart}
+                                onChange={(e) =>
+                                  setEditPart(parseInt(e.target.value))
+                                }
+                              />
+                            </div>
+                            <div className={styles.field}>
+                              <label className={styles.label}>Sort</label>
+                              <input
+                                className={styles.input}
+                                type="number"
+                                value={editSort}
+                                onChange={(e) =>
+                                  setEditSort(parseInt(e.target.value))
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div className={styles.field}>
+                            <label className={styles.label}>
+                              Example words JSON
+                            </label>
+                            <input
+                              className={styles.input}
+                              value={editExamples}
+                              onChange={(e) => setEditExamples(e.target.value)}
+                              placeholder='[{"word":"Apfel","meaning":"apple"}]'
+                            />
+                          </div>
+                          <div className={styles.editActions}>
+                            <Button
+                              label={isSaving ? "Saving..." : "Save"}
+                              onClick={() => handleSaveEdit(item.id)}
+                              disabled={isSaving}
+                            />
+                            <Button
+                              label="Cancel"
+                              variant="secondary"
+                              onClick={() => setEditingId(null)}
+                            />
+                          </div>
                         </div>
-                        <div className={styles.itemMeta}>
-                          <span className={styles.metaTag}>
-                            Part {item.partNumber}
-                          </span>
-                          <span className={styles.metaTag}>
-                            #{item.sortOrder}
-                          </span>
+                      ) : (
+                        // ── View mode ──────────────────────────
+                        <div className={styles.itemLeft}>
+                          <div className={styles.itemTexts}>
+                            <span className={styles.itemTarget}>
+                              {item.targetText}
+                            </span>
+                            <span className={styles.itemNative}>
+                              {item.nativeText}
+                            </span>
+                          </div>
+                          <div className={styles.itemMeta}>
+                            <span className={styles.metaTag}>
+                              Part {item.partNumber}
+                            </span>
+                            <span className={styles.metaTag}>
+                              #{item.sortOrder}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        className={styles.deleteBtn}
-                      >
-                        ✕
-                      </button>
+                      )}
+
+                      {editingId !== item.id && (
+                        <div className={styles.itemActions}>
+                          <button
+                            onClick={() => handleStartEdit(item)}
+                            className={styles.editBtn}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(item.id)}
+                            className={styles.deleteBtn}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
