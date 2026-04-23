@@ -1,0 +1,119 @@
+/* File: src/components/background/MeteorBackground.module.css */
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: #050510;
+}
+
+.spaceLayer {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, #080828 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, #0a0320 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, #050518 0%, transparent 50%);
+}
+
+.nebulaLayer1 {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 30% 30%, rgba(0, 201, 255, 0.025) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 70%, rgba(120, 80, 200, 0.03) 0%, transparent 50%);
+}
+
+.nebulaLayer2 {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 80% 40%, rgba(240, 165, 0, 0.015) 0%, transparent 40%),
+        radial-gradient(ellipse at 10% 80%, rgba(0, 100, 255, 0.02) 0%, transparent 40%);
+}
+
+.starsLayer {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 65%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 70%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 75%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 95%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 25%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 60%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 8% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 18% 28%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 42% 48%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 67% 72%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 88% 92%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 33% 18%, rgba(200,220,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 58% 38%, rgba(200,220,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 77% 58%, rgba(200,220,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 48%, rgba(200,220,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 3% 72%, rgba(200,220,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 48% 92%, rgba(200,220,255,0.3) 0%, transparent 100%);
+    background-size: 100% 100%;
+}
+
+/* ── Meteor ──────────────────────────────────────────────── */
+.meteor {
+    position: absolute;
+    height: 1px;
+    border-radius: 9999px;
+
+    /* Direction: top-right to bottom-left */
+    transform: rotate(135deg);
+    transform-origin: left center;
+
+    animation: meteor linear infinite;
+    animation-fill-mode: both;
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 10%,
+        var(--meteor-color) 60%,
+        rgba(255, 255, 255, 0.9) 85%,
+        rgba(255, 255, 255, 1) 100%
+    );
+
+    box-shadow:
+        0 0 2px 0px var(--meteor-color),
+        0 0 4px 0px rgba(255,255,255,0.3);
+}
+
+@keyframes meteor {
+    0% {
+        transform: rotate(135deg) translateX(-200px);
+        opacity: 0;
+    }
+    3% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: rotate(135deg) translateX(900px);
+        opacity: 0;
+    }
+}
