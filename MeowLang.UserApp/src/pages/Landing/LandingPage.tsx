@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
+import LoginModal from '../../components/modals/LoginModal'
+import RegisterModal from '../../components/modals/RegisterModal'
 import styles from './LandingPage.module.css'
 
 function LandingPage() {
@@ -25,62 +27,25 @@ function LandingPage() {
                 </h1>
             </section>
 
-            {/* Login modal placeholder */}
+            {/* Modals */}
             {showLogin && (
-                <div style={{
-                    position: 'fixed',
-                    inset: 0,
-                    zIndex: 50,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <div style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        backdropFilter: 'blur(20px)',
-                        padding: '40px',
-                        borderRadius: '20px',
-                        color: 'white'
-                    }}>
-                        Login modal coming soon
-                        <br />
-                        <button
-                            onClick={() => setShowLogin(false)}
-                            style={{ color: 'white', marginTop: '16px' }}
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
+                <LoginModal
+                    onClose={() => setShowLogin(false)}
+                    onSwitchToRegister={() => {
+                        setShowLogin(false)
+                        setShowRegister(true)
+                    }}
+                />
             )}
 
-            {/* Register modal placeholder */}
             {showRegister && (
-                <div style={{
-                    position: 'fixed',
-                    inset: 0,
-                    zIndex: 50,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <div style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        backdropFilter: 'blur(20px)',
-                        padding: '40px',
-                        borderRadius: '20px',
-                        color: 'white'
-                    }}>
-                        Register modal coming soon
-                        <br />
-                        <button
-                            onClick={() => setShowRegister(false)}
-                            style={{ color: 'white', marginTop: '16px' }}
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
+                <RegisterModal
+                    onClose={() => setShowRegister(false)}
+                    onSwitchToLogin={() => {
+                        setShowRegister(false)
+                        setShowLogin(true)
+                    }}
+                />
             )}
         </div>
     )

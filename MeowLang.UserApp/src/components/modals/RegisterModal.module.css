@@ -1,0 +1,195 @@
+/* File: src/components/modals/RegisterModal.module.css */
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 8, 18, 0.6);
+    backdrop-filter: blur(2px);
+    animation: fadeIn 200ms ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal {
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    max-width: 440px;
+    margin: 20px;
+    padding: 40px;
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: slideUp 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.6);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeBtn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.header {
+    margin-bottom: 28px;
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.twoCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.3px;
+}
+
+.input {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    padding: 13px 16px;
+    font-size: 15px;
+    color: #ffffff;
+    outline: none;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+    width: 100%;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.input:focus {
+    border-color: rgba(240, 165, 0, 0.6);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 0 3px rgba(240, 165, 0, 0.1);
+}
+
+.error {
+    padding: 12px 16px;
+    background: rgba(255, 77, 106, 0.12);
+    border: 1px solid rgba(255, 77, 106, 0.25);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    color: #ff6b84;
+}
+
+.submitBtn {
+    background: var(--color-gold);
+    color: #050812;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 100%;
+    margin-top: 4px;
+}
+
+.submitBtn:hover:not(:disabled) {
+    background: var(--color-gold-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(240, 165, 0, 0.3);
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.switchText {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.switchBtn {
+    background: none;
+    border: none;
+    color: var(--color-gold);
+    font-size: 14px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity var(--transition-fast);
+}
+
+.switchBtn:hover {
+    opacity: 0.8;
+}
