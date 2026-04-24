@@ -1,0 +1,136 @@
+/* File: src/components/navbar/Navbar.module.css */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: transparent;
+}
+
+/* ── Brand ───────────────────────────────────────────────── */
+.brand {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--color-gold);
+    letter-spacing: -0.5px;
+    cursor: default;
+}
+
+/* ── Desktop actions ─────────────────────────────────────── */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.loginBtn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 9px 24px;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    letter-spacing: 0.3px;
+}
+
+.loginBtn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.registerBtn {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    color: #050812;
+    padding: 9px 24px;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    letter-spacing: 0.3px;
+}
+
+.registerBtn:hover {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-1px);
+}
+
+/* ── Mobile menu button ──────────────────────────────────── */
+.menuBtn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+/* ── Mobile dropdown ─────────────────────────────────────── */
+.mobileMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(5, 8, 18, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mobileLoginBtn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    width: 100%;
+}
+
+.mobileRegisterBtn {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    color: #050812;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    width: 100%;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 16px 20px;
+    }
+
+    .actions {
+        display: none;
+    }
+
+    .menuBtn {
+        display: block;
+    }
+}
