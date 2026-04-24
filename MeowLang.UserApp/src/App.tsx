@@ -20,6 +20,29 @@ function App() {
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
+
+        {/* Temporary placeholder — we will build this properly next */}
+        <Route
+          path="/app"
+          element={
+            <div
+              style={{
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+                fontFamily: "var(--font-display)",
+                fontSize: "32px",
+                position: "relative",
+                zIndex: 20,
+              }}
+            >
+              Welcome! App coming soon...
+            </div>
+          }
+        />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
