@@ -4,7 +4,11 @@ import { useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import LoginModal from '../../components/modals/LoginModal'
 import RegisterModal from '../../components/modals/RegisterModal'
+import LanguageGlobe from '../../components/globe/LanguageGlobe'
 import styles from './LandingPage.module.css'
+
+// For now hardcoded — later we will fetch from API
+const ACTIVE_LANGUAGES = ['de']
 
 function LandingPage() {
     const [showLogin, setShowLogin] = useState(false)
@@ -25,6 +29,17 @@ function LandingPage() {
                         Learning App
                     </span>
                 </h1>
+            </section>
+
+            {/* Globe section */}
+            <section className={styles.globeSection}>
+                <h2 className={styles.sectionTitle}>
+                    Languages we teach
+                </h2>
+                <p className={styles.sectionSubtitle}>
+                    More languages coming soon
+                </p>
+                <LanguageGlobe activeLanguageCodes={ACTIVE_LANGUAGES} />
             </section>
 
             {/* Modals */}
