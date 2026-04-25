@@ -1,0 +1,105 @@
+/* File: src/components/cta/CTASection.module.css */
+
+.section {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-10) var(--space-6);
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* ── Image ───────────────────────────────────────────────── */
+.imageWrapper {
+    flex-shrink: 0;
+    width: 380px;
+}
+
+.image {
+    width: 100%;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 24px rgba(100, 100, 255, 0.1));
+}
+
+/* ── Content ─────────────────────────────────────────────── */
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 460px;
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 58px);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.accent {
+    color: var(--color-gold);
+}
+
+.paragraph {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── CTA Button ──────────────────────────────────────────── */
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #050812;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 16px 36px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    align-self: flex-start;
+    letter-spacing: 0.2px;
+}
+
+.ctaBtn:hover {
+    background: rgba(255, 255, 255, 0.88);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.15);
+}
+
+.ctaBtn:active {
+    transform: translateY(0);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .imageWrapper {
+        width: 280px;
+    }
+
+    .ctaBtn {
+        align-self: center;
+    }
+}

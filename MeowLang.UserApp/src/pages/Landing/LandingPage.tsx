@@ -5,9 +5,10 @@ import Navbar from '../../components/navbar/Navbar'
 import LoginModal from '../../components/modals/LoginModal'
 import RegisterModal from '../../components/modals/RegisterModal'
 import LanguageGlobe from '../../components/globe/LanguageGlobe'
+import FeaturesSection from '../../components/features/FeaturesSection'
+import CTASection from '../../components/cta/CTASection'
 import styles from './LandingPage.module.css'
 
-// For now hardcoded — later we will fetch from API
 const ACTIVE_LANGUAGES = ['de']
 
 function LandingPage() {
@@ -41,6 +42,12 @@ function LandingPage() {
                 </p>
                 <LanguageGlobe activeLanguageCodes={ACTIVE_LANGUAGES} />
             </section>
+
+            {/* Features section */}
+            <FeaturesSection />
+
+            {/* CTA section */}
+            <CTASection onRegisterClick={() => setShowRegister(true)} />
 
             {/* Modals */}
             {showLogin && (
