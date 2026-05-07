@@ -76,3 +76,38 @@
   --z-backdrop:    40;
   --z-modal:       50;
 }
+
+/* ── Neo-Brutalist App Theme ─────────────────────────────── */
+[data-theme="app"] {
+    /* ── Base ──────────────────────────────────────────── */
+    --app-bg:              #F5F5DC;
+    --app-bg-card:         #FFFFFF;
+    --app-bg-accent:       #F0EDD0;
+
+    /* ── Borders ───────────────────────────────────────── */
+    --app-border:          #000000;
+    --app-border-width:    2.5px;
+    --app-border-radius:   6px;
+
+    /* ── Shadow — brutalist offset ─────────────────────── */
+    --app-shadow:          4px 4px 0px #000000;
+    --app-shadow-lg:       6px 6px 0px #000000;
+    --app-shadow-hover:    6px 6px 0px #000000;
+
+    /* ── Accent colors ─────────────────────────────────── */
+    --app-gold:            #F0A500;
+    --app-teal:            #00C9B1;
+    --app-magenta:         #FF2D78;
+    --app-blue:            #0066FF;
+    --app-green:           #00C853;
+    --app-red:             #FF3B30;
+
+    /* ── Text ───────────────────────────────────────────── */
+    --app-text-primary:    #000000;
+    --app-text-secondary:  #444444;
+    --app-text-tertiary:   #888888;
+
+    /* ── Typography ─────────────────────────────────────── */
+    --app-font-display:    'Unbounded', sans-serif;
+    --app-font-body:       'Nunito', sans-serif;
+}
