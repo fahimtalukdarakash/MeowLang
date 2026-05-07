@@ -1,0 +1,237 @@
+/* File: src/pages/App/LanguageSelect/LanguageSelectPage.module.css */
+
+.page {
+    min-height: 100vh;
+    background-color: var(--app-bg, #F5F5DC);
+    font-family: var(--app-font-body, 'Nunito', sans-serif);
+}
+
+/* ── Top bar ─────────────────────────────────────────────── */
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: var(--app-border-width, 2.5px) solid var(--app-border, #000);
+    background: #FFFFFF;
+}
+
+.logo {
+    font-family: var(--app-font-display, 'Unbounded', sans-serif);
+    font-size: 20px;
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: -0.5px;
+}
+
+.userArea {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.userName {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.logoutBtn {
+    background: #000000;
+    color: #FFFFFF;
+    border: var(--app-border-width, 2.5px) solid #000000;
+    border-radius: var(--app-border-radius, 6px);
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--app-font-body, 'Nunito', sans-serif);
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-shadow: var(--app-shadow, 4px 4px 0px #000);
+}
+
+.logoutBtn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--app-shadow-hover, 6px 6px 0px #000);
+}
+
+.logoutBtn:active {
+    transform: translate(0px, 0px);
+    box-shadow: none;
+}
+
+/* ── Main content ────────────────────────────────────────── */
+.main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 64px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.heading {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.title {
+    font-family: var(--app-font-display, 'Unbounded', sans-serif);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: var(--app-text-secondary, #444);
+}
+
+/* ── Language grid ───────────────────────────────────────── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+/* ── Language card ───────────────────────────────────────── */
+.card {
+    background: #FFFFFF;
+    border: var(--app-border-width, 2.5px) solid #000000;
+    border-radius: var(--app-border-radius, 6px);
+    box-shadow: var(--app-shadow, 4px 4px 0px #000);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 150ms ease;
+    position: relative;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--app-shadow-hover, 6px 6px 0px #000);
+}
+
+.card:active {
+    transform: translate(0px, 0px);
+    box-shadow: none;
+}
+
+/* ── Locked card ─────────────────────────────────────────── */
+.cardLocked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--app-bg-accent, #F0EDD0);
+}
+
+.cardLocked:hover {
+    transform: none;
+    box-shadow: var(--app-shadow, 4px 4px 0px #000);
+}
+
+.lockBadge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000000;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: var(--app-font-body, 'Nunito', sans-serif);
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ── Card content ────────────────────────────────────────── */
+.cardFlag {
+    font-size: 48px;
+    line-height: 1;
+}
+
+.cardName {
+    font-family: var(--app-font-display, 'Unbounded', sans-serif);
+    font-size: 16px;
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: -0.3px;
+}
+
+.cardMeta {
+    font-size: 13px;
+    color: var(--app-text-secondary, #444);
+}
+.flagEmoji {
+    font-size: 56px;
+    line-height: 1;
+}
+
+.flagCode {
+    font-family: var(--app-font-display, 'Unbounded', sans-serif);
+    font-size: 42px;
+    font-weight: 800;
+    display: block;
+}
+/* ── Start button ────────────────────────────────────────── */
+.startBtn {
+    background: var(--app-gold, #F0A500);
+    color: #000000;
+    border: var(--app-border-width, 2.5px) solid #000000;
+    border-radius: var(--app-border-radius, 6px);
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: var(--app-font-body, 'Nunito', sans-serif);
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-shadow: 3px 3px 0px #000;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.startBtn:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.startBtn:active:not(:disabled) {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+.startBtn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ── Loading ─────────────────────────────────────────────── */
+.loading {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--app-text-secondary, #444);
+    padding: 64px;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .topBar {
+        padding: 16px 20px;
+    }
+
+    .main {
+        padding: 40px 16px;
+    }
+}
