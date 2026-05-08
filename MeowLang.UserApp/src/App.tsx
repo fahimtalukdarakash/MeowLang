@@ -10,6 +10,7 @@ import LandingPage from "./pages/Landing/LandingPage";
 // App pages — imported later when we build them
 import LanguageSelectPage from "./pages/App/LanguageSelect/LanguageSelectPage";
 import LevelMapPage from "./pages/App/LevelMap/LevelMapPage";
+import SubLevelSelectPage from "./pages/App/SubLevelSelect/SubLevelSelectPage";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuthStore();
@@ -52,6 +53,14 @@ function App() {
           element={
             <ProtectedRoute>
               <LevelMapPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/app/language/:languageId/level/:levelId"
+          element={
+            <ProtectedRoute>
+              <SubLevelSelectPage />
             </ProtectedRoute>
           }
         />

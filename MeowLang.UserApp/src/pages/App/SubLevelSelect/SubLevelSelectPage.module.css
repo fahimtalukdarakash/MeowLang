@@ -1,0 +1,283 @@
+/* File: src/pages/App/SubLevelSelect/SubLevelSelectPage.module.css */
+
+.page {
+    min-height: 100vh;
+    background-color: #F5F5DC;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* ── Top bar ─────────────────────────────────────────────── */
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 2.5px solid #000;
+    background: #FFFFFF;
+}
+
+.topLeft {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.backBtn {
+    background: #F5F5DC;
+    color: #000000;
+    border: 2.5px solid #000;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-shadow: 3px 3px 0px #000;
+}
+
+.backBtn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.backBtn:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+.logo {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #000000;
+}
+
+.userArea {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.livesDisplay {
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.userName {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.logoutBtn {
+    background: #000000;
+    color: #FFFFFF;
+    border: 2.5px solid #000;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-shadow: 4px 4px 0px #555;
+}
+
+.logoutBtn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #555;
+}
+
+/* ── Main ────────────────────────────────────────────────── */
+.main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.heading {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #444444;
+}
+
+/* ── Grid ────────────────────────────────────────────────── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.card {
+    border: 2.5px solid #000;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    transition: all 150ms ease;
+    background: #FFFFFF;
+}
+
+.cardUnlocked {
+    box-shadow: 4px 4px 0px #000;
+    cursor: pointer;
+}
+
+.cardUnlocked:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+.cardUnlocked:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+.cardLocked {
+    box-shadow: 4px 4px 0px #999;
+    cursor: not-allowed;
+    opacity: 0.55;
+    background: #F0EDD0;
+}
+
+/* ── Lock badge ──────────────────────────────────────────── */
+.lockBadge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #000000;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 1;
+}
+
+/* ── Accent bar ──────────────────────────────────────────── */
+.accentBar {
+    height: 8px;
+    width: 100%;
+    border-bottom: 2.5px solid #000;
+}
+
+/* ── Card content ────────────────────────────────────────── */
+.cardContent {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cardIcon {
+    font-size: 36px;
+    line-height: 1;
+}
+
+.cardTitle {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: -0.3px;
+}
+
+.cardDesc {
+    font-size: 13px;
+    color: #444444;
+    line-height: 1.5;
+}
+
+/* ── Stats row ───────────────────────────────────────────── */
+.statsRow {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1.5px solid #000;
+    border-bottom: 1.5px solid #000;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.statValue {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #000000;
+    text-transform: capitalize;
+}
+
+.statLabel {
+    font-size: 11px;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ── Start button ────────────────────────────────────────── */
+.startBtn {
+    width: 100%;
+    padding: 12px;
+    border: 2.5px solid #000;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-shadow: 3px 3px 0px #000;
+    color: #000000;
+    margin-top: 4px;
+}
+
+.startBtn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+.startBtn:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+/* ── States ──────────────────────────────────────────────── */
+.loading {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    padding: 64px;
+}
+
+.empty {
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+    padding: 64px;
+    border: 2.5px dashed #000;
+    border-radius: 6px;
+}
