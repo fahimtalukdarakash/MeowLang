@@ -9,6 +9,7 @@ import LandingPage from "./pages/Landing/LandingPage";
 
 // App pages — imported later when we build them
 import LanguageSelectPage from "./pages/App/LanguageSelect/LanguageSelectPage";
+import LevelMapPage from "./pages/App/LevelMap/LevelMapPage";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuthStore();
@@ -46,7 +47,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+        <Route
+          path="/app/language/:languageId"
+          element={
+            <ProtectedRoute>
+              <LevelMapPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
